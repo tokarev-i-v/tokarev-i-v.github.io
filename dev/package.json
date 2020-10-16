@@ -1,0 +1,71 @@
+{
+  "name": "polyzer.github.io",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "dependencies": {
+    "@babel/node": "^7.10.5",
+    "@tensorflow/tfjs": "^2.3.0",
+    "@tensorflow/tfjs-core": "^2.3.0",
+    "@tensorflow/tfjs-node": "^2.3.0",
+    "@tensorflow/tfjs-node-gpu": "^2.3.0",
+    "@tensorflow/tfjs-vis": "^1.4.3",
+    "babel-node": "^0.0.1-security",
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "src": "^1.1.2"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development parcel index.html --no-hmr --target browser",
+    "build": "cross-env NODE_ENV=development parcel ppo_class_web_worker.html ./agents/policy_gradients/ppo_class_worker.js --target browser --out-dir build --public-url ./",
+    "test": "babel-node --inspect tests.js",
+    "lint": "eslint ."
+  },
+  "browser": {
+    "crypto": false
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "~6.26.0",
+    "babel-preset-env": "~1.6.1",
+    "clang-format": "~1.2.2",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.9.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.5.0"
+  },
+  "eslintConfig": {
+    "extends": "google",
+    "rules": {
+      "require-jsdoc": 0,
+      "valid-jsdoc": 0
+    },
+    "env": {
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    }
+  },
+  "eslintIgnore": [
+    "dist/"
+  ],
+  "staticFiles": {
+    "staticPath": [
+      "src/models",
+      "src/images"
+    ],
+    "watcherGlob": "**"
+  },
+  "repository": "https://github.com/polyzer/polyzer.github.io",
+  "author": "polyzer <realpolyzer@gmail.com>"
+}
