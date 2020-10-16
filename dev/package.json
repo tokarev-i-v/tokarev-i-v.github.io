@@ -22,7 +22,7 @@
     "src": "^1.1.2"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development parcel index.html --no-hmr --target browser",
+    "dev": "cross-env NODE_ENV=development parcel index.html rllibjs.html --no-hmr --target browser",
     "build": "cross-env NODE_ENV=development parcel ppo_class_web_worker.html ./agents/policy_gradients/ppo_class_worker.js --target browser --out-dir build --public-url ./",
     "test": "babel-node --inspect tests.js",
     "lint": "eslint ."

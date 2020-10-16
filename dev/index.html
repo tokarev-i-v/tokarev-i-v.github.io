@@ -1,27 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>three.js webgl - collada - skinning</title>
+    <title>Tokarev Igor</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <style>
-      body {
-        background: #777;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-      }
-
+        body {
+            background: #777;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-family: Ubuntu, sans-serif;
+        }
+        @font-face {
+            font-family: "Ubuntu";
+            src: url("./src/style/3976.ttf") format("ttf");
+        }
+        #maindiv{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            flex-flow: row nowrap;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        #container{
+            position:relative;
+            width: 80%;
+            height: 100%;
+        }
+        #name{
+            font-size: 300%;
+        }
+        #about{
+            position: relative;
+            width: 20%;
+            height: 100%;
+            background-color: aliceblue;
+        }
+        #about .projects_name{
+            font-size: 250%;
+        }
+        .item{  
+            margin: auto;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .project{
+            width: 100%;
+            height: auto;
+        }
+        .project > .project__name{
+            width: 100%;
+            height: auto;
+            font-size: 200%;
+        
+        }
+        .project > .project__description{
+            width: 100%;
+            height: auto;
+            font-size: 130%;
+        }
     </style>
   </head>
 
   <body>
-    <div id="container"></div>
+    <div id="maindiv">
+        <div id="container"></div>
 
+        <div id="about">
+            <div id="name" class="item">
+                Tokarev Igor
+            </div>
+            <div id="projects" class="item">
+                <div class="projects_name">
+                    Projects
+                </div>
+                <div class="project">
+                    <div class="project__name">
+                        <a href="./rllibjs.html">rllib.js</a>
+                    </div>    
+                    <div class="project__description">
+                        Reinforcement learning library in JavaScript. Provides RL in browser using tensorflow.js and three.js
+                    </div>    
+                </div>
+            </div>
+        </div>    
+    </div>
     <script src="./src/jsm/Program.js"></script>
-
   </body>
 </html>

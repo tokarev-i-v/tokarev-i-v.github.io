@@ -32,7 +32,7 @@ class Program {
 
     this.camera = new THREE.PerspectiveCamera(
       25,
-      window.innerWidth / window.innerHeight,
+      window.innerWidth/5*4 / window.innerHeight,
       1,
       1000
     );
@@ -41,7 +41,7 @@ class Program {
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(window.innerWidth/5*4, window.innerHeight);
     this.container.appendChild(this.renderer.domElement);
 
     // collada
@@ -97,9 +97,9 @@ class Program {
   }
 
   onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = window.innerWidth/5*4 / window.innerHeight;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(window.innerWidth/5*4, window.innerHeight);
   }
 
   animate() {
