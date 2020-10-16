@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>rllib.js</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+        body {
+            background: #777;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-family: Ubuntu, sans-serif;
+        }
+        #maindiv{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        #project{
+            position: relative;
+            width: 20%;
+            height: 100%;
+            background-color: aliceblue;
+        }
+        #project .project__name{
+            font-size: 350%;
+            background-color: #F0DB4F;
+            padding: 10px 10px 10px 10px;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #project #project__menu{
+            font-size: 200%;
+            padding: 10px 10px 10px 10px;
+            position: relative;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .menu__item{
+            margin: auto;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .menu__item__name{
+
+            font-size: 200%;
+        }
+        .menu__item__element{
+            
+        }
+        @font-face {
+            font-family: "Ubuntu";
+            src: url("./src/style/3976.ttf") format("ttf");
+        }
+
+        /*//////////////////////////////////////////////////////////*/
+        /*//////////////////////////////////////////////////////////*/
+        /*//////////////////////////////////////////////////////////*/
+        /*//////////////////////////////////////////////////////////*/
+        /*//////////////////////////////////////////////////////////*/
+        #container{
+            position:relative;
+            width: 80%;
+            height: 100%;
+            overflow-y:scroll;
+        }
+        .paragraph{
+            width: 100%;
+            height: auto;
+            background-color: white;
+            position: relative;
+        }
+        .paragraph .paragraph__title{
+            font-size: 300%;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .paragraph .paragraph__content{
+            width: 100%;
+            font-size: 130%;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            height: auto;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .paragraph .paragraph__content .paragraph__content__grid{
+            width: 100%;
+            font-size: 130%;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            height: auto;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .paragraph .paragraph__content .paragraph__content__grid .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+
+        /* Create two equal columns that sits next to each other */
+        .paragraph .paragraph__content .paragraph__content__grid .column {
+            flex: 50%;
+            padding: 0 4px;
+        }
+
+        .paragraph .paragraph__content .paragraph__content__grid .column img {
+            margin-top: 8px;
+            vertical-align: middle;
+            max-width:30%;
+            height:auto;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div id="maindiv">
+        <div id="container">
+            <div class="paragraph">
+                <div class="paragraph__title">
+                    Examples
+                </div>
+                <div class="paragraph__content">
+                    <div class="paragraph__content__grid">
+                        <div class="row">
+                            <div class="column">
+                                <img src="src/images/flat_world_env.png" />
+                            </div>
+                            <div class="column">
+                                <img src="src/images/hunters_env.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paragraph">
+                <div class="paragraph__title">
+                    Algorithms
+                </div>
+                <div class="paragraph__content">
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                </div>
+            </div>
+
+            <div class="paragraph">
+                <div class="paragraph__title">
+                    Environments
+                </div>
+                <div class="paragraph__content">
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+                    Examples sdfuihsodfgosdfygvusodf
+
+
+                </div>
+            </div>
+        
+        </div>
+
+        <div id="project">
+            <div class="project__name">
+                <a href="./rllibjs.html">rllib.js</a>
+            </div>
+            <div id="project__menu" >
+                <div class="menu__item">
+                    <div class="menu__item__name">
+                        Algorithms
+                    </div>
+                    <div class="menu__item__element">
+                        PPO
+                    </div>
+                    <div class="menu__item__element">
+                        DQN
+                    </div>
+                    <div class="menu__item__element">
+                        DDPG
+                    </div>
+                </div>
+                <div class="menu__item">
+                    <div class="menu__item__name">
+                        Environments
+                    </div>
+                    <div class="menu__item__element">
+                        Three.js
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <script src="./src/jsm/rllib-page.js"></script>
+  </body>
+</html>
