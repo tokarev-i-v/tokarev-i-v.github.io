@@ -85,6 +85,7 @@
             height: auto;
             background-color: white;
             position: relative;
+            border-bottom: 5px solid black;
         }
         .paragraph .paragraph__title{
             font-size: 300%;
@@ -124,16 +125,29 @@
         }
 
         /* Create two equal columns that sits next to each other */
-        .paragraph .paragraph__content .paragraph__content__grid .column {
-            flex: 50%;
+        .paragraph .paragraph__content .paragraph__content__grid .row .column {
+            flex: 25%;
             padding: 0 4px;
         }
 
-        .paragraph .paragraph__content .paragraph__content__grid .column img {
+        .paragraph .paragraph__content .paragraph__content__grid .column .img_container img {
             margin-top: 8px;
-            vertical-align: middle;
-            max-width:30%;
+            max-width: 50%;
             height:auto;
+
+            opacity: 1;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .img_container{
+        }
+        .img_container:hover .img {
+            opacity: 0.3;
+        }
+
+        .img_container:hover .middle {
+            opacity: 1;
         }
     </style>
   </head>
@@ -149,10 +163,26 @@
                     <div class="paragraph__content__grid">
                         <div class="row">
                             <div class="column">
-                                <img src="src/images/flat_world_env.png" />
+                                <div class="img_container">
+                                    <img src="src/images/flat_world_env.png" />
+                                  </div>
                             </div>
                             <div class="column">
-                                <img src="src/images/hunters_env.png" />
+                                <div class="img_container">
+                                    <img src="src/images/hunters_env.png" />
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <div class="img_container">
+                                    <img src="src/images/flat_world_env.png" />
+                                  </div>
+                            </div>
+                            <div class="column">
+                                <div class="img_container">
+                                    <img src="src/images/hunters_env.png" />
+                                  </div>
                             </div>
                         </div>
                     </div>
