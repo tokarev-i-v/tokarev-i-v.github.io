@@ -80,11 +80,12 @@
             width: 80%;
             height: 100%;
             overflow-y:scroll;
+            
         }
         .paragraph{
             width: 100%;
             height: auto;
-            background-color: white;
+            background-color: aliceblue;
             position: relative;
             border-bottom: 5px solid black;
         }
@@ -127,13 +128,13 @@
 
         /* Create two equal columns that sits next to each other */
         .paragraph .paragraph__content .paragraph__content__grid .row .column {
-            flex: 40%;
+            flex: 100%;
             padding: 0 4px;
         }
 
-        .paragraph .paragraph__content .paragraph__content__grid .column .img_container img {
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__image img {
             margin-top: 8px;
-            max-width: 80%;
+            max-width: 40%;
             height:auto;
 
             opacity: 1;
@@ -142,14 +143,18 @@
             border: 4px solid black;
         }
 
-        .img_container{
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__image{
         }
-        .img_container:hover .img {
-            opacity: 0.3;
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__image:hover {
+            opacity: 0.9;
+            transform: opacity;
+        }
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__image:hover .middle {
+            opacity: 1;
         }
 
-        .img_container:hover .middle {
-            opacity: 1;
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__description p {
+            margin: 0px 0px 0px 0px;
         }
     </style>
   </head>
@@ -165,14 +170,24 @@
                     <div class="paragraph__content__grid">
                         <div class="row">
                             <div class="column">
-                                <div class="img_container">
+                                <div class="example__image">
                                     <img src="src/images/flat_world_env.png" />
-                                  </div>
+                                </div>
+                                <div class="example__description">
+                                    <p>Flat World: Agent is trying to learn eat only green cubes by picking up them.</p>
+                                    <p><a href="https://threejs.org/">Three.js</a>, <a href="https://www.tensorflow.org/js">Tensorflow.js</a></p>
+                                    <p>Browser: Desktop, Mobile Phone</p>
+                                </div>
                             </div>
                             <div class="column">
-                                <div class="img_container">
+                                <div class="example__image">
                                     <img src="src/images/hunters_env.png" />
                                   </div>
+                                  <div class="example__description">
+                                    <p>Hunter World: Agent is trying to learn eat only green cubes by picking up them or shooting them.</p>
+                                    <p><a href="https://threejs.org/">Three.js</a>, <a href="https://www.tensorflow.org/js">Tensorflow.js</a></p>
+                                    <p>Browser: Desktop, Mobile Phone</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,21 +199,13 @@
                     Algorithms
                 </div>
                 <div class="paragraph__content">
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
-                    Examples sdfuihsodfgosdfygvusodf
+                    <p>PPO</p>
                 </div>
             </div>
             <!--COMMENT-->
-            <div class="paragraph">
+            <!-- <div class="paragraph">
                 <div class="paragraph__title">
-                    Environments
+                    Live Examples
                 </div>
                 <div class="paragraph__content">
                     Examples sdfuihsodfgosdfygvusodf
@@ -213,7 +220,7 @@
 
 
                 </div>
-            </div>
+            </div> -->
         
         </div>
 
@@ -238,12 +245,13 @@
                 </div>
                 <div class="menu__item">
                     <div class="menu__item__name">
-                        Environments
+                        Live examples
                     </div>
                     <div class="menu__item__element">
                         <p>Flat Eat World</p>
-                        <p>Browser, Node.js</p>
-                        <p>Three.js</p>
+                    </div>
+                    <div class="menu__item__element">
+                        <p>Hunters World</p>
                     </div>
                 </div>
             </div>
