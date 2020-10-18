@@ -132,9 +132,16 @@
             padding: 0 4px;
         }
 
+        .paragraph .paragraph__content .paragraph__content__grid .column .example__image{
+            width: 40%;
+            height:auto;
+            margin: auto;
+            cursor: pointer;    
+        }
+
         .paragraph .paragraph__content .paragraph__content__grid .column .example__image img {
             margin-top: 8px;
-            max-width: 40%;
+            max-width: 100%;
             height:auto;
 
             opacity: 1;
@@ -143,8 +150,6 @@
             border: 4px solid black;
         }
 
-        .paragraph .paragraph__content .paragraph__content__grid .column .example__image{
-        }
         .paragraph .paragraph__content .paragraph__content__grid .column .example__image:hover {
             opacity: 0.9;
             transform: opacity;
@@ -157,6 +162,11 @@
             margin: 0px 0px 0px 0px;
         }
     </style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+</script>
   </head>
 
   <body>
@@ -200,6 +210,10 @@
                 </div>
                 <div class="paragraph__content">
                     <p>PPO</p>
+                    <p>
+                        When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+                        \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+                      </p>
                 </div>
             </div>
             <!--COMMENT-->
