@@ -1,10 +1,10 @@
 /**
  * Middleware for processing queryes from main process to PPO algorithm.
  */
-import * as tf from '@tensorflow/tfjs'
-const { PPO } = require("./PPO_class")
-import {get_serialized_layers_data, create_model_by_serialized_data}  from '../../utils';
-import {build_full_connected}  from '../../neuralnetworks';
+importScripts("https://cdnjs.cloudflare.com/ajax/libs/tensorflow/3.8.0/tf.min.js")
+importScripts('../../neuralnetworks.js')
+importScripts('../../utils.js')
+importScripts("./PPO_class.js")
 var agent = {
     observation_space: [],
     action_space: []
@@ -59,7 +59,7 @@ function start(e){
         if (policy_nn){
             model = create_model_by_serialized_data(policy_nn);
         }
-        self.ppo_obj = new PPO({env: env, agent: agent, hidden_sizes:[64,64], cr_lr:1e-3, ac_lr:1e-3, gamma:0.99, lam:0.95, steps_per_env:10000, 
+        self.ppo_obj = new PPO({env: env, agent: agent, hidden_sizes:[64,64], cr_lr:1e-4, ac_lr:1e-4, gamma:0.99, lam:0.95, steps_per_env:2000, 
             number_envs:1, eps:0.15, actor_iter:6, critic_iter:10, num_epochs:5000, minibatch_size:128, policy_nn: model});
         self.ppo_obj.train();
 }
@@ -90,9 +90,8 @@ async function loadValueModelByPath(weights_path){
     });
 }
 
-
 //at first we get "agent" and "env"
-tf.setBackend("cpu").then(()=>{
+tf.setBackend("webgl").then(()=>{
     self.onmessage = function(e){
         if (e.data.msg_type === "start"){
             start(e);
@@ -112,6 +111,6 @@ tf.setBackend("cpu").then(()=>{
             if (e.data.value_weights_path){
                 loadValueModelByPath(e.data.value_weights_path)
             }
-        }          
+        }        
     }    
 });
