@@ -112,19 +112,6 @@ class MobileControls{
 		}.bind(this);
 
 
-
-		//mouse/touch controller
-		// this.RotateHammer = new this.Hammer(document.body);
-		// this.RotateHammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		// this.RotateHammer.on("pan", function (event) {
-
-		// 	this.OrientationParameters.touchRotRadX = THREE.Math.degToRad(event.deltaX/30);
-		// 	this.OrientationParameters.touchRotRadY = THREE.Math.degToRad(event.deltaY/30);
-		// 	this.OrientationParameters.touchDeltaTime = event.deltaTime;
-
-		// }.bind(this));
-
-
 		this.AccelerometerControls = new THREE.DeviceOrientationControls(this.Camera);
 		this.update = this.accelerometerUpdate;
 
