@@ -78,7 +78,7 @@ PPOworker.onmessage = function(e){
 }
 
 /*Starting training process*/
-tf.setBackend("webgl").then(()=>{
+tf.setBackend("cpu").then(()=>{
     PPOworker.postMessage({
         msg_type: "start",
         observation_space: a.observation_space,
