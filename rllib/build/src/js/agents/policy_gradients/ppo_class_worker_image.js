@@ -94,7 +94,7 @@ async function loadValueModel(vw){
 }
 
 //at first we get "agent" and "env"
-tf.setBackend("cpu").then(()=>{
+tf.setBackend("webgl").then(()=>{
     self.onmessage = function(e){
         if (e.data.msg_type === "start"){
             start(e);
