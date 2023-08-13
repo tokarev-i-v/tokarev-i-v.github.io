@@ -1,7 +1,7 @@
 /**
  * Middleware for processing queryes from main process to PPO algorithm.
  */
-importScripts("https://cdnjs.cloudflare.com/ajax/libs/tensorflow/3.8.0/tf.min.js")
+importScripts("https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.10.0/tf.min.js")
 importScripts('../../neuralnetworks.js')
 importScripts('../../utils.js')
 importScripts("./PPO_class_image.js")

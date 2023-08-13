@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="src/css/styles.css" />
   <link rel="stylesheet" type="text/css" href="src/css/MovingButtons.css" />
   <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/tensorflow/3.8.0/tf.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.10.0/tf.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.4.3/dist/tfjs-vis.umd.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js'></script>
   <script src='src/js/threejs/stats.min.js'></script>
@@ -78,7 +78,7 @@ PPOworker.onmessage = function(e){
 }
 
 /*Starting training process*/
-tf.setBackend("webgl").then(()=>{
+tf.setBackend("cpu").then(()=>{
     PPOworker.postMessage({
         msg_type: "start",
         observation_space: a.observation_space,
