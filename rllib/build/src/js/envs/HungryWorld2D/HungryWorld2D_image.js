@@ -271,13 +271,13 @@ class HungryAgent{
   get_observation() {
     this.Renderer.render(this.Scene, this.Camera);
     let gl = this.Renderer.getContext("webgl", {preserveDrawingBuffer: true});
-    let pixels = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 3);
-    gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGB, gl.UNSIGNED_BYTE, pixels);
+    let pixels = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+    gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
     let rearr = [];
     for (let i = 0; i < gl.drawingBufferWidth; i++){
       rearr.push([]);
       for (let j = 0; j < gl.drawingBufferHeight; j++){
-        rearr[i].push([pixels[i*3*gl.drawingBufferWidth+j*3+0]/255.0, pixels[i*3*gl.drawingBufferWidth+j*3+1]/255.0, pixels[i*3*gl.drawingBufferWidth+j*3+2]/255.0]);
+        rearr[i].push([pixels[i*4*gl.drawingBufferWidth+j*4+0]/255.0, pixels[i*4*gl.drawingBufferWidth+j*4+1]/255.0, pixels[i*4*gl.drawingBufferWidth+j*4+2]/255.0]);
       }
     }
     return rearr;
