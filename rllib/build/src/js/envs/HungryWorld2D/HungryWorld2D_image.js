@@ -182,29 +182,10 @@ class HungryAgent{
     this.greens_count = 0;
     this.yellows_count = 0;
     this.position.y = 1;
+    this.raycaster = new THREE.Raycaster();
     this.action_space = new BoxSpace(this.min_action,this.max_action, [3]);
     this.observation_space = new BoxSpace(-1, 1, imgshape[0]*this.imgshape[1]*this.imgshape[2]);
-    this.eyes_count = 1;
-    this.eyes = [];
     let r = 20;
-    let dalpha = 10;
-    let alpha = -(dalpha*this.eyes_count)/2;
-    /**Now we create agent's eyes*/
-    for (let i = 0; i < this.eyes_count; i++){
-      let eye = new Eye(this, alpha, r);
-      let mesh = eye.view;
-      this.view.add(mesh);
-      this.view.add(eye.sphere_point);
-      this.eyes.push(eye);
-      alpha += dalpha;
-    }
-    this._frontEye = null;
-    if(this.eyes.length % 2 === 0){
-      this._frontEye = this.eyes[Math.round(this.eyes.length/2)];
-    }else {
-      this._frontEye = this.eyes[Math.round(this.eyes.length/2)-1];
-    }
-
     console.log("Observation space shape: ", this.observation_space.shape);
     if (opt.algo){
       this.brain = new opt.algo({imgshape: this.imgshape, num_actions: this.action_space.length});
@@ -292,6 +273,19 @@ class HungryAgent{
     return rearr;
   }
 
+  get_detection(targets_objs){
+    let targets = targets_objs.map((el)=>{
+        return el.view;
+    });
+    this.raycaster.set(this.position, this.view.getWorldDirection());
+    let intersects = this.raycaster.intersectObjects(targets);
+    if (intersects.length > 0 && intersects[0].distance < this.max_range){
+      return {obj: intersects[0].object, type: intersects[0].object._rl.type, dist: intersects[0].distance}
+    } else {
+      return null;
+    }
+  }
+
   get_reward() {
     // compute reward 
     let proximity_reward = 0.0;
@@ -337,80 +331,7 @@ class HungryAgent{
   set angle(val){
     this._view.rotation.z = val;
   }
-  get frontEye(){
-    return this._frontEye;
-  }
 }
-/**
- * @class Eye
- * It presents as agent's eye detector.
- */
-class Eye{
-  /**
-   * 
-   * @param {THREE.Vector3} agent_pos_vec Vector that would use as src
-   * vector for raycastring
-   * @param {Number} alpha angle 
-   * @param {Number} r radius
-   */
-  constructor(a, alpha, r){
-
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 3 } );    
-    const positions = [];
-    const colors = [];
-
-    positions.push( 0, 0, 0 );
-    positions.push(Math.sin(Math.PI*alpha/180)*r,0,  Math.cos(Math.PI*alpha/180)*r)
-
-    
-    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
-		// geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
-    this._view = new THREE.Line(
-      geometry,
-      material
-    );
-    this.sphere_point = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(0.1, 10, 10),
-      new THREE.MeshBasicMaterial({color:0x000000})
-    )
-    this.sphere_point.geometry.computeBoundingBox();
-    this.sphere_point.position.set(Math.sin(Math.PI*alpha/180)*r, 0, Math.cos(Math.PI*alpha/180)*r);
-    this.end_position = new THREE.Vector3(Math.sin(Math.PI*alpha/180)*r,Math.cos(Math.PI*alpha/180)*r,  Math.PI/2);
-    /**setting Eye position and rotation */
-    this._view.geometry.computeBoundingBox();
-    this.raycaster = new THREE.Raycaster();
-    this.max_range = 20;
-    this.sensed_proximity = 20; // what the eye is seeing. will be set in world.tick()
-    this.a = a;
-  }
-  get view(){
-    return this._view;
-  }
-  /**
-   * This function return the nearest detected object.
-   * @param {THREE.Mesh[]} targets array of intersection targets
-   * @returns {Object|null} 
-   */
-  get_detection(targets_objs){
-    let targets = targets_objs.map((el)=>{
-        return el.view;
-    });
-    let dst = new THREE.Vector3();
-    dst.setFromMatrixPosition( this.sphere_point.matrixWorld );
-    dst.sub(this.a.position.clone());
-    dst.normalize();
-    this.raycaster.set(this.a.position, dst);
-    let intersects = this.raycaster.intersectObjects(targets);
-    if (intersects.length > 0 && intersects[0].distance < this.max_range){
-      // intersects[0].object.material.color.setHex( 0x0000ff );
-      return {obj: intersects[0].object, type: intersects[0].object._rl.type, dist: intersects[0].distance}
-    } else {
-      return null;
-    }
-  }
-}
-
   /**
    * @class
    * World Contains all features.
@@ -459,7 +380,7 @@ class HungryWorld2D {
       }
 
       if(this.algorithm){
-        let agent = new Agent({eyes_count: 10, algo: this.algorithm});
+        let agent = new Agent({algo: this.algorithm});
         this.Scene.add(agent.view);
         this.agents.push(agent);        
       }
@@ -643,11 +564,11 @@ class HungryWorld2D {
     }
 
     // helper function to get closest colliding walls/items
-    computeCollisions(eye, check_walls, check_items) {
+    computeCollisions(agent, check_walls, check_items) {
       let minres = false;
 
       if(check_walls) {
-          let res = eye.get_detection(this.walls);
+          let res = agent.get_detection(this.walls);
           if(res) {
             res.type = 0; // 0 is wall
             if(!minres) { minres=res; }
@@ -655,7 +576,7 @@ class HungryWorld2D {
       }
       // collide with items
       if(check_items) {
-        let res = eye.get_detection(this.items);
+        let res = agent.get_detection(this.items);
         if(res) {
           if(!minres) { minres=res; }
         }
@@ -735,7 +656,7 @@ class HungryWorld2D {
           let d = a.position.distanceTo(it.position);
           if(d < it.rad + a.rad) {
             
-            let rescheck = this.computeCollisions(a.frontEye, true, false);
+            let rescheck = this.computeCollisions(a, true, false);
             if(!rescheck) { 
               if(it.type === 1) {
                 a.digestion_signal += it.reward;

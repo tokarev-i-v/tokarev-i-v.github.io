@@ -40,7 +40,7 @@ var a = new HungryAgent({Scene: w.Scene, Renderer: w.Renderer, imgshape: imgshap
 w.addAgent(a);
 
 /*Create neural network*/
-let cur_nn = build_cnn(imgshape, [64, 64], a.action_space.shape[0], 'tanh', 'tanh');
+let cur_nn = build_cnn(imgshape, [], a.action_space.shape[0], 'tanh', 'tanh');
 /*Create neural network*/
 let weights_obj = get_serialized_layers_data(cur_nn);
 
